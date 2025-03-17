@@ -12,6 +12,8 @@ img = Image.open('./test/liuyifei.png')
 
 inputs = processor(images=[img], text=prompt, return_tensors="pt").to(model.device, torch.bfloat16)
 
+print(f'inputs is {inputs}')
+
 generated_ids = model.generate(**inputs, max_new_tokens=1000, do_sample=False)
 ret = processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
 print(ret)
